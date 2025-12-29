@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hitster Bingo Zufallsgenerator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <p class="subtitle">Hitster Bingo</p>
+        <h1>Zufallsgenerator</h1>
+        <p class="intro">
+          Ziehe eindeutige Zahlen für euer Spiel. Passe den Bereich an und
+          starte eine neue Runde, wenn ihr fertig seid.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="current">
+          <span class="label">Letzte Zahl</span>
+          <span id="currentNumber" class="number">–</span>
+        </div>
+
+        <div class="controls">
+          <button id="drawButton" class="primary" type="button">
+            Zahl ziehen
+          </button>
+          <button id="resetButton" class="secondary" type="button">
+            Runde zurücksetzen
+          </button>
+        </div>
+
+        <div class="range">
+          <label>
+            Von
+            <input id="minInput" type="number" min="1" value="1" />
+          </label>
+          <label>
+            Bis
+            <input id="maxInput" type="number" min="1" value="200" />
+          </label>
+        </div>
+
+        <div class="status">
+          <p id="remaining">Noch 200 Zahlen verfügbar.</p>
+          <p id="historyLabel">Gezogene Zahlen:</p>
+          <div id="history" class="history">–</div>
+        </div>
+      </section>
+
+      <footer>
+        <p>
+          Tipp: Auf GitHub Pages veröffentlichen und mit Freunden teilen.
+        </p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
