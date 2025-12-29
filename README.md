@@ -7,8 +7,8 @@ analogen Disco-Kugel wird per Klick eine Kategorie für das Spielbrett gezogen.
 
 1. Öffne `index.html` im Browser oder veröffentliche das Repository über GitHub Pages.
 2. Wähle die Brettseite (A = Einsteiger, B = Fortgeschrittene).
-3. Klicke auf **Disco-Kugel drehen**, um eine Kategorie zu ziehen.
-4. Nutze **Verlauf löschen**, um neu zu starten.
+3. Klicke auf **Weiter zur Disco-Kugel**.
+4. Drücke auf **Drehen**, bis eine Kategorie ausgewählt wurde.
 
 ## GitHub Pages aktivieren
 
