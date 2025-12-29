@@ -1,64 +1,108 @@
-const currentNumber = document.getElementById("currentNumber");
-const drawButton = document.getElementById("drawButton");
-const resetButton = document.getElementById("resetButton");
-const minInput = document.getElementById("minInput");
-const maxInput = document.getElementById("maxInput");
-const remaining = document.getElementById("remaining");
+const currentCategory = document.getElementById("currentCategory");
+const categoryDescription = document.getElementById("categoryDescription");
 const history = document.getElementById("history");
+const spinButton = document.getElementById("spinButton");
+const resetButton = document.getElementById("resetButton");
+const boardInputs = document.querySelectorAll("input[name='board']");
 
-let availableNumbers = [];
-let drawnNumbers = [];
-
-const getRange = () => {
-  const min = Number(minInput.value);
-  const max = Number(maxInput.value);
-  return { min, max };
+const categories = {
+  A: [
+    {
+      title: "Gruppe oder Solokünstler",
+      description:
+        "Schreibt auf, ob der Song von einem Solokünstler oder einer Band gesungen/gespielt wird. Die Antwort zeigt 👥, wenn es eine Gruppe ist. Duette oder Gastauftritte zählen als Gruppe.",
+    },
+    {
+      title: "Vor 2000?",
+      description:
+        "Notiert „Ja“, wenn der Song vor 2000 veröffentlicht wurde, sonst „Nein“.",
+    },
+    {
+      title: "4 Jahre früher oder später",
+      description:
+        "Schreibt das Veröffentlichungsjahr auf. Ein Punkt, wenn ihr innerhalb von ±4 Jahren liegt. Exakt richtig: Kreuz eines Mitspielers löschen.",
+    },
+    {
+      title: "Jahrzehnt",
+      description:
+        "Schreibt das Jahrzehnt auf, z. B. 1960er oder Achtziger Jahre.",
+    },
+    {
+      title: "2 Jahre früher oder später",
+      description:
+        "Notiert das Veröffentlichungsjahr. Ein Punkt, wenn ihr innerhalb von ±2 Jahren liegt. Exakt richtig: Kreuz eines Mitspielers löschen.",
+    },
+  ],
+  B: [
+    {
+      title: "Titel des Songs",
+      description:
+        "Notiert den Titel des Songs. Wenn der Titel fast, aber nicht ganz richtig ist, entscheiden die Mitspieler, ob es einen Punkt gibt.",
+    },
+    {
+      title: "Genaues Erscheinungsjahr",
+      description:
+        "Notiert das Jahr, in dem der Song veröffentlicht wurde. Exakt richtig gibt einen Punkt. Hinweis: Es zählt das Veröffentlichungsjahr oder die erste öffentliche Aufführung.",
+    },
+    {
+      title: "Name der Band oder des Künstlers",
+      description:
+        "Notiert den Namen! Bei Zusammenarbeit mehrerer Künstler zählt der wichtigste Solokünstler als korrekt.",
+    },
+    {
+      title: "Jahrzehnt",
+      description:
+        "Schreibt das Jahrzehnt auf, z. B. 1960er oder Achtziger Jahre.",
+    },
+    {
+      title: "3 Jahre früher oder später",
+      description:
+        "Notiert das Veröffentlichungsjahr. Ein Punkt, wenn ihr innerhalb von ±3 Jahren liegt.",
+    },
+  ],
 };
 
-const buildRange = () => {
-  const { min, max } = getRange();
-  if (!Number.isInteger(min) || !Number.isInteger(max) || min < 1 || max < min) {
-    return [];
-  }
-  const size = max - min + 1;
-  return Array.from({ length: size }, (_, index) => min + index);
-};
+let historyEntries = [];
 
-const updateStatus = () => {
-  if (availableNumbers.length === 0) {
-    remaining.textContent = "Keine Zahlen mehr verfügbar. Bitte zurücksetzen.";
-  } else {
-    remaining.textContent = `Noch ${availableNumbers.length} Zahlen verfügbar.`;
-  }
+const getSelectedBoard = () =>
+  document.querySelector("input[name='board']:checked")?.value ?? "A";
 
-  history.textContent = drawnNumbers.length
-    ? drawnNumbers.join(", ")
-    : "–";
-};
-
-const resetRound = () => {
-  availableNumbers = buildRange();
-  drawnNumbers = [];
-  currentNumber.textContent = "–";
-  updateStatus();
-};
-
-const drawNumber = () => {
-  if (availableNumbers.length === 0) {
-    updateStatus();
+const updateDisplay = (entry) => {
+  if (!entry) {
+    currentCategory.textContent = "–";
+    categoryDescription.textContent = "–";
+    history.textContent = historyEntries.length
+      ? historyEntries.join(" · ")
+      : "–";
     return;
   }
 
-  const index = Math.floor(Math.random() * availableNumbers.length);
-  const [number] = availableNumbers.splice(index, 1);
-  drawnNumbers.unshift(number);
-  currentNumber.textContent = number;
-  updateStatus();
+  currentCategory.textContent = entry.title;
+  categoryDescription.textContent = entry.description;
+  history.textContent = historyEntries.join(" · ");
 };
 
-minInput.addEventListener("change", resetRound);
-maxInput.addEventListener("change", resetRound);
-drawButton.addEventListener("click", drawNumber);
-resetButton.addEventListener("click", resetRound);
+const spinCategory = () => {
+  const board = getSelectedBoard();
+  const list = categories[board];
+  const randomIndex = Math.floor(Math.random() * list.length);
+  const picked = list[randomIndex];
+  historyEntries = [picked.title, ...historyEntries].slice(0, 8);
+  updateDisplay(picked);
+};
 
-resetRound();
+const resetHistory = () => {
+  historyEntries = [];
+  updateDisplay();
+};
+
+boardInputs.forEach((input) => {
+  input.addEventListener("change", () => {
+    resetHistory();
+  });
+});
+
+spinButton.addEventListener("click", spinCategory);
+resetButton.addEventListener("click", resetHistory);
+
+resetHistory();

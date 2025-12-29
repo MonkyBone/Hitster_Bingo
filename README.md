@@ -1,15 +1,14 @@
-# Hitster Bingo Zufallsgenerator
+# Hitster Bingo Digitale Disco-Kugel
 
-Ein einfacher Zufallsgenerator für das Musikspiel "Hitster Bingo". Die Seite zieht
-jede Zahl nur einmal pro Runde und kann leicht über GitHub Pages veröffentlicht
-werden.
+Eine digitale Version der Kategorie-Auswahl für "Hitster Bingo". Statt der
+analogen Disco-Kugel wird per Klick eine Kategorie für das Spielbrett gezogen.
 
 ## Nutzung
 
 1. Öffne `index.html` im Browser oder veröffentliche das Repository über GitHub Pages.
-2. Passe bei Bedarf den Zahlenbereich an.
-3. Klicke auf **Zahl ziehen**, um eine neue zufällige Zahl zu erhalten.
-4. Nutze **Runde zurücksetzen**, um wieder alle Zahlen verfügbar zu machen.
+2. Wähle die Brettseite (A = Einsteiger, B = Fortgeschrittene).
+3. Klicke auf **Disco-Kugel drehen**, um eine Kategorie zu ziehen.
+4. Nutze **Verlauf löschen**, um neu zu starten.
 
 ## GitHub Pages aktivieren
 
