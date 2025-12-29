@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hitster Bingo – Disco-Kugel</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <p class="subtitle">Hitster Bingo</p>
+        <h1 id="categoryTitle">–</h1>
+        <p id="categoryDescription" class="intro">–</p>
+      </header>
+
+      <section class="panel spinner-panel">
+        <div class="spinner-wrapper">
+          <div class="spinner-board" aria-hidden="true">
+            <div class="category-segment segment-a">Gruppe/Solo</div>
+            <div class="category-segment segment-b">Vor 2000?</div>
+            <div class="category-segment segment-c">Jahr ±4</div>
+            <div class="category-segment segment-d">Jahrzehnt</div>
+            <div class="category-segment segment-e">Jahr ±2</div>
+          </div>
+          <div id="spinnerPointer" class="spinner-pointer" aria-hidden="true">
+            <span class="pointer-tip"></span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="spinButton" class="primary" type="button">Drehen</button>
+          <a class="secondary link-button" href="index.html">
+            Zurück zur Auswahl
+          </a>
+        </div>
+      </section>
+
+      <section class="panel info-panel">
+        <div class="board-selection">
+          <p class="section-title">Brettseite</p>
+          <div class="board-options" role="radiogroup" aria-label="Brettseite">
+            <label class="chip">
+              <input type="radio" name="board" value="A" />
+              Seite A · Einsteiger
+            </label>
+            <label class="chip">
+              <input type="radio" name="board" value="B" />
+              Seite B · Fortgeschrittene
+            </label>
+          </div>
+        </div>
+
+        <div class="status">
+          <p id="historyLabel">Letzte Drehungen:</p>
+          <div id="history" class="history">–</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
