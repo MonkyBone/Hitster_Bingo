@@ -163,7 +163,7 @@ button:active {
 
 .spinner-wrapper {
   position: relative;
-  width: min(420px, 80vw);
+  width: min(520px, 88vw);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -224,11 +224,13 @@ button:active {
 }
 
 .spinner-pointer {
-  position: relative;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
   width: 16px;
-  height: 46%;
+  height: 48%;
   transform-origin: bottom center;
-  transform: rotate(0deg);
+  transform: translateX(-50%) rotate(0deg);
   z-index: 2;
 }
 

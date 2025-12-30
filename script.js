@@ -116,7 +116,7 @@ const spinCategory = () => {
   isSpinning = true;
   spinButton.disabled = true;
   spinnerPointer.style.transition = "transform 5s cubic-bezier(0.12, 0.9, 0.12, 1)";
-  spinnerPointer.style.transform = `rotate(${currentAngle}deg)`;
+  spinnerPointer.style.transform = `translateX(-50%) rotate(${currentAngle}deg)`;
 
   const onStop = () => {
     spinnerPointer.removeEventListener("transitionend", onStop);
