@@ -1,8 +1,8 @@
 :root {
   color-scheme: light;
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-  background: #f6f4f2;
-  color: #1f1f1f;
+  background: #000;
+  color: #f8f2ef;
 }
 
 * {
@@ -12,6 +12,7 @@
 body {
   margin: 0;
   padding: 32px 16px;
+  background: #000;
 }
 
 .app {
@@ -26,12 +27,18 @@ header {
   text-align: center;
 }
 
+.title-image {
+  width: min(320px, 80vw);
+  height: auto;
+  margin-bottom: 12px;
+}
+
 .subtitle {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.75rem;
   margin: 0 0 8px;
-  color: #6b5b53;
+  color: #cfc1bb;
 }
 
 h1 {
@@ -42,7 +49,7 @@ h1 {
 .intro {
   margin: 0 auto;
   max-width: 560px;
-  color: #4a3d36;
+  color: #d8cfc9;
   line-height: 1.6;
 }
 
@@ -293,6 +300,6 @@ button:active {
 
 footer {
   text-align: center;
-  color: #7a6a62;
+  color: #b9aba4;
   font-size: 0.85rem;
 }
