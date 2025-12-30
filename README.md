@@ -1,3 +1,5 @@
+![Screenshot](https://hitstergame.com/wp-content/uploads/2024/03/Logo_Hitster-music-Bingo_v2-300x189.png)
+
 # Hitster Bingo Digitale Disco-Kugel
 
 Eine digitale Version der Kategorie-Auswahl für "Hitster Bingo". Statt der
