@@ -4,47 +4,48 @@ const history = document.getElementById("history");
 const spinButton = document.getElementById("spinButton");
 const boardInputs = document.querySelectorAll("input[name='board']");
 const spinnerPointer = document.getElementById("spinnerPointer");
+const spinnerBoard = document.querySelector(".spinner-board");
 const spinnerSegments = document.querySelectorAll(".category-segment");
 
 const categories = {
   A: [
     {
       title: "Gruppe oder Solokünstler",
-      short: "Gruppe/Solo",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/Grupo-o-solista-300x270.png",
+      color: "#7fd39a",
       description:
         "Schreibt auf, ob der Song von einem Solokünstler oder einer Band gesungen/gespielt wird. Die Antwort zeigt 👥, wenn es eine Gruppe ist. Duette oder Gastauftritte zählen als Gruppe.",
     },
     {
       title: "Vor 2000?",
-      short: "Vor 2000?",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/2000-300x270.png",
+      color: "#f1b6f2",
       description:
         "Notiert „Ja“, wenn der Song vor 2000 veröffentlicht wurde, sonst „Nein“.",
     },
     {
       title: "4 Jahre früher oder später",
-      short: "Jahr ±4",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/4-300x270.png",
+      color: "#f5d36c",
       description:
         "Schreibt das Veröffentlichungsjahr auf. Ein Punkt, wenn ihr innerhalb von ±4 Jahren liegt. Exakt richtig: Kreuz eines Mitspielers löschen.",
     },
     {
       title: "Jahrzehnt",
-      short: "Jahrzehnt",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/Decada-300x270.png",
+      color: "#9f87ff",
       description:
         "Schreibt das Jahrzehnt auf, z. B. 1960er oder Achtziger Jahre.",
     },
     {
       title: "2 Jahre früher oder später",
-      short: "Jahr ±2",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/2-300x270.png",
+      color: "#8fc0ff",
       description:
         "Notiert das Veröffentlichungsjahr. Ein Punkt, wenn ihr innerhalb von ±2 Jahren liegt. Exakt richtig: Kreuz eines Mitspielers löschen.",
     },
@@ -52,41 +53,41 @@ const categories = {
   B: [
     {
       title: "Titel des Songs",
-      short: "Songtitel",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/notas-neon-300x270.png",
+      color: "#7fd39a",
       description:
         "Notiert den Titel des Songs. Wenn der Titel fast, aber nicht ganz richtig ist, entscheiden die Mitspieler, ob es einen Punkt gibt.",
     },
     {
       title: "Genaues Erscheinungsjahr",
-      short: "Exakt Jahr",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/ano-exacto-300x270.png",
+      color: "#f1b6f2",
       description:
         "Notiert das Jahr, in dem der Song veröffentlicht wurde. Exakt richtig gibt einen Punkt. Hinweis: Es zählt das Veröffentlichungsjahr oder die erste öffentliche Aufführung.",
     },
     {
       title: "Name der Band oder des Künstlers",
-      short: "Künstler",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/Nombre-del-Grupo-o-solista-300x270.png",
+      color: "#f5d36c",
       description:
         "Notiert den Namen! Bei Zusammenarbeit mehrerer Künstler zählt der wichtigste Solokünstler als korrekt.",
     },
     {
       title: "Jahrzehnt",
-      short: "Jahrzehnt",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/Decada-300x270.png",
+      color: "#9f87ff",
       description:
         "Schreibt das Jahrzehnt auf, z. B. 1960er oder Achtziger Jahre.",
     },
     {
       title: "3 Jahre früher oder später",
-      short: "Jahr ±3",
       symbol:
         "https://hitstergame.com/wp-content/uploads/2024/03/3-300x270.png",
+      color: "#8fc0ff",
       description:
         "Notiert das Veröffentlichungsjahr. Ein Punkt, wenn ihr innerhalb von ±3 Jahren liegt.",
     },
@@ -116,6 +117,7 @@ const updateDisplay = (entry) => {
 const updateSegments = () => {
   const board = getSelectedBoard();
   const list = categories[board];
+  const sliceAngle = 360 / list.length;
   spinnerSegments.forEach((segment, index) => {
     const label = segment.querySelector(".segment-label");
     const icon = segment.querySelector(".segment-icon");
@@ -123,10 +125,22 @@ const updateSegments = () => {
     if (!entry || !label || !icon) {
       return;
     }
-    label.textContent = entry.short ?? "–";
+    label.textContent = entry.title ?? "–";
     icon.src = entry.symbol ?? "";
     icon.alt = entry.title ?? "";
+    const angle = index * sliceAngle + sliceAngle / 2;
+    segment.style.setProperty("--segment-angle", `${angle}deg`);
   });
+  if (spinnerBoard) {
+    const gradientStops = list
+      .map((entry, index) => {
+        const start = index * sliceAngle;
+        const end = start + sliceAngle;
+        return `${entry.color ?? "#444"} ${start}deg ${end}deg`;
+      })
+      .join(", ");
+    spinnerBoard.style.background = `conic-gradient(${gradientStops})`;
+  }
   updateDisplay();
 };
 
@@ -137,9 +151,11 @@ const spinCategory = () => {
   const randomIndex = Math.floor(Math.random() * list.length);
   const picked = list[randomIndex];
   const sliceAngle = 360 / list.length;
-  const targetAngle = 360 - (randomIndex * sliceAngle + sliceAngle / 2);
+  const targetAngle = randomIndex * sliceAngle + sliceAngle / 2;
   const extraSpins = 3 * 360;
-  currentAngle = currentAngle + extraSpins + targetAngle;
+  const normalizedAngle = ((currentAngle % 360) + 360) % 360;
+  const delta = (targetAngle - normalizedAngle + 360) % 360;
+  currentAngle = currentAngle + extraSpins + delta;
 
   isSpinning = true;
   spinButton.disabled = true;

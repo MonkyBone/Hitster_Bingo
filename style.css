@@ -175,6 +175,7 @@ button:active {
   display: grid;
   place-items: center;
   margin: 0 auto;
+  --segment-radius: clamp(120px, 28vw, 190px);
 }
 
 .spinner-board {
@@ -193,8 +194,10 @@ button:active {
 
 .category-segment {
   position: absolute;
-  width: 140px;
-  min-height: 140px;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -204,6 +207,10 @@ button:active {
   font-weight: 600;
   color: #1f1f1f;
   text-shadow: 0 2px 6px rgba(255, 255, 255, 0.8);
+  transform: translate(-50%, -50%)
+    rotate(var(--segment-angle, 0deg))
+    translateY(calc(var(--segment-radius) * -1))
+    rotate(calc(var(--segment-angle, 0deg) * -1));
 }
 
 .segment-icon {
@@ -213,39 +220,11 @@ button:active {
 }
 
 .segment-label {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   line-height: 1.2;
+  max-width: 140px;
 }
 
-.segment-a {
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.segment-b {
-  top: 35%;
-  right: 8%;
-  transform: translateX(20%);
-}
-
-.segment-c {
-  bottom: 12%;
-  right: 20%;
-  transform: translateX(10%);
-}
-
-.segment-d {
-  bottom: 18%;
-  left: 18%;
-  transform: translateX(-10%);
-}
-
-.segment-e {
-  top: 35%;
-  left: 8%;
-  transform: translateX(-20%);
-}
 
 .spinner-pointer {
   position: absolute;
