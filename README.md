@@ -14,4 +14,4 @@ analogen Disco-Kugel wird per Klick eine Kategorie für das Spielbrett gezogen.
 
 1. Push das Repository zu GitHub.
 2. Öffne **Settings → Pages** und wähle den Branch sowie den Ordner `/ (root)` aus.
-3. Nach wenigen Sekunden ist die Seite unter `https://monkybone.github.io/Hitster_Bingo/` erreichbar.
+3. Nach wenigen Sekunden ist die Seite unter `https://<user>.github.io/<repo>/` erreichbar.

@@ -11,30 +11,40 @@ const categories = {
     {
       title: "Gruppe oder Solokünstler",
       short: "Gruppe/Solo",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/Grupo-o-solista-300x270.png",
       description:
         "Schreibt auf, ob der Song von einem Solokünstler oder einer Band gesungen/gespielt wird. Die Antwort zeigt 👥, wenn es eine Gruppe ist. Duette oder Gastauftritte zählen als Gruppe.",
     },
     {
       title: "Vor 2000?",
       short: "Vor 2000?",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/2000-300x270.png",
       description:
         "Notiert „Ja“, wenn der Song vor 2000 veröffentlicht wurde, sonst „Nein“.",
     },
     {
       title: "4 Jahre früher oder später",
       short: "Jahr ±4",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/4-300x270.png",
       description:
         "Schreibt das Veröffentlichungsjahr auf. Ein Punkt, wenn ihr innerhalb von ±4 Jahren liegt. Exakt richtig: Kreuz eines Mitspielers löschen.",
     },
     {
       title: "Jahrzehnt",
       short: "Jahrzehnt",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/Decada-300x270.png",
       description:
         "Schreibt das Jahrzehnt auf, z. B. 1960er oder Achtziger Jahre.",
     },
     {
       title: "2 Jahre früher oder später",
       short: "Jahr ±2",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/2-300x270.png",
       description:
         "Notiert das Veröffentlichungsjahr. Ein Punkt, wenn ihr innerhalb von ±2 Jahren liegt. Exakt richtig: Kreuz eines Mitspielers löschen.",
     },
@@ -43,30 +53,40 @@ const categories = {
     {
       title: "Titel des Songs",
       short: "Songtitel",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/notas-neon-300x270.png",
       description:
         "Notiert den Titel des Songs. Wenn der Titel fast, aber nicht ganz richtig ist, entscheiden die Mitspieler, ob es einen Punkt gibt.",
     },
     {
       title: "Genaues Erscheinungsjahr",
       short: "Exakt Jahr",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/ano-exacto-300x270.png",
       description:
         "Notiert das Jahr, in dem der Song veröffentlicht wurde. Exakt richtig gibt einen Punkt. Hinweis: Es zählt das Veröffentlichungsjahr oder die erste öffentliche Aufführung.",
     },
     {
       title: "Name der Band oder des Künstlers",
       short: "Künstler",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/Nombre-del-Grupo-o-solista-300x270.png",
       description:
         "Notiert den Namen! Bei Zusammenarbeit mehrerer Künstler zählt der wichtigste Solokünstler als korrekt.",
     },
     {
       title: "Jahrzehnt",
       short: "Jahrzehnt",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/Decada-300x270.png",
       description:
         "Schreibt das Jahrzehnt auf, z. B. 1960er oder Achtziger Jahre.",
     },
     {
       title: "3 Jahre früher oder später",
       short: "Jahr ±3",
+      symbol:
+        "https://hitstergame.com/wp-content/uploads/2024/03/3-300x270.png",
       description:
         "Notiert das Veröffentlichungsjahr. Ein Punkt, wenn ihr innerhalb von ±3 Jahren liegt.",
     },
@@ -97,7 +117,15 @@ const updateSegments = () => {
   const board = getSelectedBoard();
   const list = categories[board];
   spinnerSegments.forEach((segment, index) => {
-    segment.textContent = list[index]?.short ?? "–";
+    const label = segment.querySelector(".segment-label");
+    const icon = segment.querySelector(".segment-icon");
+    const entry = list[index];
+    if (!entry || !label || !icon) {
+      return;
+    }
+    label.textContent = entry.short ?? "–";
+    icon.src = entry.symbol ?? "";
+    icon.alt = entry.title ?? "";
   });
   updateDisplay();
 };
