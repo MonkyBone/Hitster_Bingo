@@ -98,6 +98,16 @@ let historyEntries = [];
 let isSpinning = false;
 let currentAngle = 0;
 
+const getRandomIndex = (max) => {
+  if (max <= 0) return 0;
+  if (window.crypto && window.crypto.getRandomValues) {
+    const values = new Uint32Array(1);
+    window.crypto.getRandomValues(values);
+    return values[0] % max;
+  }
+  return Math.floor(Math.random() * max);
+};
+
 const getSelectedBoard = () =>
   document.querySelector("input[name='board']:checked")?.value ?? "A";
 
@@ -148,7 +158,7 @@ const spinCategory = () => {
   if (isSpinning) return;
   const board = getSelectedBoard();
   const list = categories[board];
-  const randomIndex = Math.floor(Math.random() * list.length);
+  const randomIndex = getRandomIndex(list.length);
   const picked = list[randomIndex];
   const sliceAngle = 360 / list.length;
   const targetAngle = randomIndex * sliceAngle + sliceAngle / 2;
