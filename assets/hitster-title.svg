@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="HITSTER">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="300" fill="black" />
+  <text
+    x="50%"
+    y="55%"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="'Segoe UI', 'Inter', sans-serif"
+    font-size="180"
+    letter-spacing="12"
+    fill="#ff5ed2"
+    stroke="#ff8fe6"
+    stroke-width="4"
+    filter="url(#glow)"
+  >
+    HITSTER
+  </text>
+</svg>
