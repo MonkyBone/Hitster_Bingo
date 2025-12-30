@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hitster Bingo – Brettseite wählen</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <p class="subtitle">Hitster Bingo</p>
+        <h1>Brettseite auswählen</h1>
+        <p class="intro">
+          Wähle die passende Seite für eure Runde. Danach geht es direkt zur
+          digitalen Disco-Kugel, die eine Kategorie auswählt.
+        </p>
+      </header>
+
+      <section class="panel home-panel">
+        <div class="board-selection">
+          <p class="section-title">Welche Seite spielt ihr?</p>
+          <div class="board-options" role="radiogroup" aria-label="Brettseite">
+            <label class="chip">
+              <input type="radio" name="board" value="A" checked />
+              Seite A · Einsteiger
+            </label>
+            <label class="chip">
+              <input type="radio" name="board" value="B" />
+              Seite B · Fortgeschrittene
+            </label>
+          </div>
+        </div>
+
+        <a id="startButton" class="primary link-button" href="play.html?board=A">
+          Weiter zur Disco-Kugel
+        </a>
+      </section>
+
+      <footer>
+        <p>
+          Tipp: Auf GitHub Pages veröffentlichen und mit der Spielrunde teilen.
+        </p>
+      </footer>
+    </main>
+
+    <script>
+      const startButton = document.getElementById("startButton");
+      const boardInputs = document.querySelectorAll("input[name='board']");
+
+      const updateLink = () => {
+        const selected = document.querySelector("input[name='board']:checked");
+        startButton.href = `play.html?board=${selected?.value ?? "A"}`;
+      };
+
+      boardInputs.forEach((input) => {
+        input.addEventListener("change", updateLink);
+      });
+
+      updateLink();
+    </script>
+  </body>
+</html>
