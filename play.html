@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hitster Bingo – Disco-Kugel</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <img
+          class="title-image"
+          src="https://hitstergame.com/wp-content/uploads/2024/03/Logo_Hitster-music-Bingo_v2-300x189.png"
+          alt="HITSTER Bingo"
+        />
+        <p class="subtitle">Hitster Bingo</p>
+        <h1 id="categoryTitle">–</h1>
+        <p id="categoryDescription" class="intro">–</p>
+      </header>
+
+      <section class="panel spinner-panel">
+        <div class="spinner-wrapper">
+          <div class="spinner-board" aria-hidden="true">
+            <div class="category-segment segment-a">
+              <img class="segment-icon" alt="" />
+              <span class="segment-label">Gruppe/Solo</span>
+            </div>
+            <div class="category-segment segment-b">
+              <img class="segment-icon" alt="" />
+              <span class="segment-label">Vor 2000?</span>
+            </div>
+            <div class="category-segment segment-c">
+              <img class="segment-icon" alt="" />
+              <span class="segment-label">Jahr ±4</span>
+            </div>
+            <div class="category-segment segment-d">
+              <img class="segment-icon" alt="" />
+              <span class="segment-label">Jahrzehnt</span>
+            </div>
+            <div class="category-segment segment-e">
+              <img class="segment-icon" alt="" />
+              <span class="segment-label">Jahr ±2</span>
+            </div>
+          </div>
+          <div id="spinnerPointer" class="spinner-pointer" aria-hidden="true">
+            <img
+              class="pointer-tip"
+              src="https://assets.stickpng.com/images/58f8bdcd0ed2bdaf7c12830d.png"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="spinButton" class="primary" type="button">Drehen</button>
+          <a class="secondary link-button" href="index.html">
+            Zurück zur Auswahl
+          </a>
+        </div>
+      </section>
+
+      <section class="panel info-panel">
+        <div class="board-selection">
+          <p class="section-title">Brettseite</p>
+          <div class="board-options" role="radiogroup" aria-label="Brettseite">
+            <label class="chip">
+              <input type="radio" name="board" value="A" />
+              Seite A · Einsteiger
+            </label>
+            <label class="chip">
+              <input type="radio" name="board" value="B" />
+              Seite B · Fortgeschrittene
+            </label>
+          </div>
+        </div>
+
+        <div class="status">
+          <p id="historyLabel">Letzte Drehungen:</p>
+          <div id="history" class="history">–</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
