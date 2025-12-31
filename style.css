@@ -228,12 +228,9 @@ button:active {
 
 .spinner-pointer {
   position: absolute;
-  bottom: 50%;
-  left: 50%;
-  width: 16px;
-  height: 48%;
-  transform-origin: bottom center;
-  transform: translateX(-50%) rotate(0deg);
+  inset: 0;
+  transform-origin: 50% 50%;
+  transform: rotate(0deg);
   z-index: 2;
 }
 
