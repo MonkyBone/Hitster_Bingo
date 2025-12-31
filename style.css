@@ -239,11 +239,11 @@ button:active {
 
 .pointer-tip {
   position: absolute;
-  top: -6px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
+  transform: translate(0, -50%);
+  width: 48%;
+  height: auto;
   object-fit: contain;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
 }

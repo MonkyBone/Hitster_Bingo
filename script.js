@@ -197,7 +197,8 @@ const spinCategory = () => {
   const randomIndex = pickIndexAvoidingRecent(list.length);
   const picked = list[randomIndex];
   const sliceAngle = 360 / list.length;
-  const targetAngle = randomIndex * sliceAngle + sliceAngle / 2;
+  const jitter = getRandomFloat(-sliceAngle * 0.3, sliceAngle * 0.3);
+  const targetAngle = randomIndex * sliceAngle + sliceAngle / 2 + jitter;
   const extraSpins = 3 * 360;
   const normalizedAngle = ((currentAngle % 360) + 360) % 360;
   const delta = (targetAngle - normalizedAngle + 360) % 360;
